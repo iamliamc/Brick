@@ -6,7 +6,7 @@ from rdflib.collection import Collection
 
 from bricksrc.ontology import define_ontology
 
-from bricksrc.namespaces import BRICK, RDF, OWL, RDFS, TAG, SOSA
+from bricksrc.namespaces import BRICK, RDF, OWL, RDFS, TAG, SOSA, SKOS
 from bricksrc.namespaces import bind_prefixes
 
 from bricksrc.setpoint import setpoint_definitions
@@ -222,9 +222,24 @@ G.add((BRICK.Class, A, OWL.Class))
 G.add((BRICK.Tag, A, OWL.Class))
 
 roots = {
-    "Equipment": {"tags": [TAG.Equipment]},
-    "Location": {"tags": [TAG.Location]},
-    "Point": {"tags": [TAG.Point]},
+    "Equipment": {
+        "tags": [TAG.Equipment],
+        SKOS.definition: Literal(
+            "A device or a set of physical devices assembled for a specific purpose"
+        ),
+    },
+    "Location": {
+        "tags": [TAG.Location],
+        SKOS.definition: Literal(
+            "Areas in buildings with various granularities. An area"
+        ),
+    },
+    "Point": {
+        "tags": [TAG.Point],
+        SKOS.definition: Literal(
+            "Points are physical or virtual entities that generate timeseries data. Physical points include actual sensors and setpoints in a building, whereas virtual points encompass synthetic data streams that are the result of some process which may operate on other timeseries data."
+        ),
+    },
     "Measurable": {},
 }
 define_classes(roots, BRICK.Class)
