@@ -10018,6 +10018,7 @@ brick:Location a owl:Class ;
     rdfs:label "Location" ;
     rdfs:subClassOf _:has_Location,
         brick:Class ;
+    skos:definition "Areas in buildings with various granularities. An area" ;
     brick:hasAssociatedTag tag:Location .
 
 brick:Min_Limit a owl:Class ;
@@ -10033,6 +10034,7 @@ brick:Point a owl:Class ;
     rdfs:label "Point" ;
     rdfs:subClassOf _:has_Point,
         brick:Class ;
+    skos:definition "Points are physical or virtual entities that generate timeseries data. Physical points include actual sensors and setpoints in a building, whereas virtual points encompass synthetic data streams that are the result of some process which may operate on other timeseries data." ;
     brick:hasAssociatedTag tag:Point .
 
 tag:Building a brick:Tag ;
@@ -10112,6 +10114,7 @@ brick:Equipment a owl:Class ;
     rdfs:label "Equipment" ;
     rdfs:subClassOf _:has_Equipment,
         brick:Class ;
+    skos:definition "A device or a set of physical devices assembled for a specific purpose" ;
     brick:hasAssociatedTag tag:Equipment .
 
 brick:Flow a owl:Class,
