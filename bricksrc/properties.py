@@ -84,14 +84,14 @@ properties = {
         RDFS.domain: BRICK.Point,
     },
     "hasPart": {
-        A: [OWL.AsymmetricProperty, OWL.IrreflexiveProperty],
+        A: [OWL.AsymmetricProperty, OWL.IrreflexiveProperty, OWL.TransitiveProperty],
         SKOS.definition: Literal(
             "The subject is composed in part of the entity given by the object"
         ),
         OWL.inverseOf: BRICK["isPartOf"],
     },
     "isPartOf": {
-        A: [OWL.AsymmetricProperty, OWL.IrreflexiveProperty],
+        A: [OWL.AsymmetricProperty, OWL.IrreflexiveProperty, OWL.TransitiveProperty],
         OWL.inverseOf: BRICK["hasPart"],
     },
     "hasTag": {
