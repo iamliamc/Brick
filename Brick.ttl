@@ -4695,6 +4695,7 @@ brick:Start_Stop_Command a owl:Class ;
     rdfs:label "Start Stop Command" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Start _:has_Stop _:has_Command ) ],
         brick:On_Off_Command ;
+    skos:definition "A Start/Stop Command controls or reports the active/inactive status of a control sequence" ;
     brick:hasAssociatedTag tag:Command,
         tag:Point,
         tag:Start,
@@ -6591,6 +6592,7 @@ brick:Off_Command a owl:Class ;
     rdfs:label "Off Command" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Off _:has_Command ) ],
         brick:On_Off_Command ;
+    skos:definition "An Off Command controls or reports the binary 'off' status of a control loop, relay or equipment activity. It can only be used to stop/terminate/deactivate an associated equipment or process, or determine that the related entity is 'off'" ;
     brick:hasAssociatedTag tag:Command,
         tag:Off,
         tag:Point .
@@ -6599,6 +6601,7 @@ brick:On_Command a owl:Class ;
     rdfs:label "On Command" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_On _:has_Command ) ],
         brick:On_Off_Command ;
+    skos:definition "An On Command controls or reports the binary 'on' status of a control loop, relay or equipment activity. It can only be used to start/activate an associated equipment or process, or determine that the related entity is 'on'" ;
     brick:hasAssociatedTag tag:Command,
         tag:On,
         tag:Point .
@@ -7088,7 +7091,8 @@ brick:hasLocation a owl:AsymmetricProperty,
 
 brick:hasPart a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
-        owl:ObjectProperty ;
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
     owl:inverseOf brick:isPartOf ;
     skos:definition "The subject is composed in part of the entity given by the object" .
 
@@ -7132,7 +7136,8 @@ brick:isMeasuredBy a owl:AsymmetricProperty,
 
 brick:isPartOf a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
-        owl:ObjectProperty ;
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
     owl:inverseOf brick:hasPart .
 
 brick:isPointOf a owl:AsymmetricProperty,
@@ -9500,7 +9505,7 @@ brick:Solid a owl:Class,
 brick:Start_Stop_Status a owl:Class ;
     rdfs:label "Start Stop Status" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Start _:has_Stop _:has_Status ) ],
-        brick:Status ;
+        brick:On_Off_Status ;
     brick:hasAssociatedTag tag:Point,
         tag:Start,
         tag:Status,
@@ -9718,6 +9723,7 @@ brick:On_Off_Command a owl:Class ;
     rdfs:label "On Off Command" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_On _:has_Off _:has_Command ) ],
         brick:Command ;
+    skos:definition "An On/Off Command controls or reports the binary status of a control loop, relay or equipment activity" ;
     brick:hasAssociatedTag tag:Command,
         tag:Off,
         tag:On,
@@ -10066,17 +10072,6 @@ brick:Enable_Command a owl:Class ;
         tag:Enable,
         tag:Point .
 
-brick:On_Off_Status a owl:Class ;
-    rdfs:label "On Off Status" ;
-    rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_On _:has_Off _:has_Status ) ],
-        brick:Off_Status,
-        brick:On_Status,
-        brick:Status ;
-    brick:hasAssociatedTag tag:Off,
-        tag:On,
-        tag:Point,
-        tag:Status .
-
 brick:Outside_Air a owl:Class,
         brick:Outside_Air ;
     rdfs:label "Outside Air" ;
@@ -10136,6 +10131,17 @@ brick:Max_Limit a owl:Class ;
         tag:Max,
         tag:Parameter,
         tag:Point .
+
+brick:On_Off_Status a owl:Class ;
+    rdfs:label "On Off Status" ;
+    rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_On _:has_Off _:has_Status ) ],
+        brick:Off_Status,
+        brick:On_Status,
+        brick:Status ;
+    brick:hasAssociatedTag tag:Off,
+        tag:On,
+        tag:Point,
+        tag:Status .
 
 tag:Disable a brick:Tag ;
     rdfs:label "Disable" .
@@ -10210,6 +10216,7 @@ brick:Parameter a owl:Class ;
         brick:Sensor,
         brick:Setpoint,
         brick:Status ;
+    skos:definition "Parameter points are configuration settings used to guide the operation of equipment and control systems; for example they may provide bounds on valid setpoint values" ;
     brick:hasAssociatedTag tag:Parameter,
         tag:Point .
 
@@ -10316,6 +10323,7 @@ tag:Fan a brick:Tag ;
 
 brick:Setpoint a owl:Class ;
     rdfs:label "Setpoint" ;
+    rdfs:seeAlso "https://xp20.ashrae.org/terminology/index.php?term=setpoint" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Setpoint ) ],
         brick:Point ;
     owl:disjointWith brick:Alarm,
@@ -10323,6 +10331,7 @@ brick:Setpoint a owl:Class ;
         brick:Parameter,
         brick:Sensor,
         brick:Status ;
+    skos:definition "A Setpoint is an input value at which the desired property is set" ;
     brick:hasAssociatedTag tag:Point,
         tag:Setpoint .
 
@@ -10348,6 +10357,7 @@ tag:Shed a brick:Tag ;
 
 brick:Alarm a owl:Class ;
     rdfs:label "Alarm" ;
+    rdfs:seeAlso "https://xp20.ashrae.org/terminology/index.php?term=alarm" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Alarm ) ],
         brick:Point ;
     owl:disjointWith brick:Command,
@@ -10355,6 +10365,7 @@ brick:Alarm a owl:Class ;
         brick:Sensor,
         brick:Setpoint,
         brick:Status ;
+    skos:definition "Alarm points are signals (either audible or visual) that alert an operator to an off-normal condition which requires some form of corrective action" ;
     brick:hasAssociatedTag tag:Alarm,
         tag:Point .
 
@@ -10411,6 +10422,7 @@ brick:Command a owl:Class ;
         brick:Sensor,
         brick:Setpoint,
         brick:Status ;
+    skos:definition "A Command is an output point that directly determines the behavior of equipment and/or affects relevant operational points." ;
     brick:hasAssociatedTag tag:Command,
         tag:Point .
 
@@ -10426,6 +10438,7 @@ brick:Quantity a owl:Class ;
 
 brick:Status a owl:Class ;
     rdfs:label "Status" ;
+    rdfs:seeAlso "https://xp20.ashrae.org/terminology/index.php?term=status" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Status ) ],
         brick:Point ;
     owl:disjointWith brick:Alarm,
@@ -10433,6 +10446,7 @@ brick:Status a owl:Class ;
         brick:Parameter,
         brick:Sensor,
         brick:Setpoint ;
+    skos:definition "A Status is input point that reports the current operating mode, state, position, or condition of an item. Statuses are observations and should be considered 'read-only'" ;
     brick:hasAssociatedTag tag:Point,
         tag:Status .
 
@@ -10447,6 +10461,7 @@ tag:Cool a brick:Tag ;
 
 brick:Sensor a owl:Class ;
     rdfs:label "Sensor" ;
+    rdfs:seeAlso "https://xp20.ashrae.org/terminology/index.php?term=Sensor" ;
     rdfs:subClassOf [ owl:intersectionOf ( _:has_Point _:has_Sensor ) ],
         brick:Point ;
     owl:disjointWith brick:Alarm,
@@ -10454,6 +10469,7 @@ brick:Sensor a owl:Class ;
         brick:Parameter,
         brick:Setpoint,
         brick:Status ;
+    skos:definition "A Sensor is an input point that represents the value of a device or instrument designed to detect and measure a variable (ASHRAE Dictionary)." ;
     brick:hasAssociatedTag tag:Point,
         tag:Sensor .
 
