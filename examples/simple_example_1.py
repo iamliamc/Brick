@@ -160,7 +160,7 @@ https://brickschema.org/resources/ or at https://github.com/BrickSchema/Brick/re
 Assuming Brick.ttl is in the current directory, you can load it with the following.
 """
 
-g.parse("Brick.ttl", format="ttl")
+g.parse("../Brick.ttl", format="ttl")
 
 """
 Now our query should execute and return one result (BLDG.VAV2-4.ZN-T)
@@ -193,3 +193,5 @@ g.add((BRICK.Fire_Zone, RDFS.subClassOf, BRICK.Location))
 # now we can use our new class
 g.add((BLDG.FZ1, RDF.type, BRICK.Fire_Zone))
 g.add((BLDG.FZ1, BRICK.hasPart, BLDG["Room-410"]))
+
+import pdb; pdb.set_trace()
