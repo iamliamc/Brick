@@ -8,7 +8,7 @@ g = Graph()
 BLDG = Namespace("https://example.com/customer_1/building_1#")
 g.bind("bldg", BLDG)
 
-BRICK = Namespace("https://brickschema.org/schema/1.0.3/Brick#")
+BRICK = Namespace("https://brickschema.org/schema/1.1/Brick#")
 g.bind("brick", BRICK)
 
 # # Should we use BRICK.Tag to get Spectral Timeseries Identifier in the system?
@@ -104,6 +104,6 @@ for row in res:
 """
 We can "serialize" this model to a file if we want to load it into another program.
 """
-with open("custom_brick_v103_sample_graph.ttl", "wb") as f:
+with open("custom_brick_v11_sample_graph.ttl", "wb") as f:
     # the Turtle format strikes a balance beteween being compact and easy to read
     f.write(g.serialize(format="ttl"))

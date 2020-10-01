@@ -4,8 +4,8 @@ import pathlib
 import pdb
 from pprint import pprint
 
-"""docker run --rm --name janusgraph-default janusgraph/janusgraph:latest"""
-"""docker run --name gremlin-server -p 8182:8182 tinkerpop/gremlin-server"""
+"""docker run --name janusgraph-default -p 8182:8182 janusgraph/janusgraph:latest"""
+"""docker run --name gremlin-server -p 5566:8182 tinkerpop/gremlin-server"""
 
 DEFAULT_LOCAL_CONNECTION_STRING = "ws://localhost:8182/gremlin"
 g = rdf2g.setup_graph(DEFAULT_LOCAL_CONNECTION_STRING)
@@ -17,7 +17,7 @@ rdf_graph = rdflib.Graph()
 rdf_graph.parse(str(OUTPUT_FILE_LAM_PROPERTIES), format="ttl")
 
 rdf2g.load_rdf2g(g, rdf_graph)
-
+import pdb; pdb.set_trace()
 rdf_type = "brick:Water_Distribution"
 
 list_of_concept = rdf2g.get_nodes_of_type(g, rdf_type)
@@ -38,12 +38,20 @@ building_properties = rdf2g.get_node_properties(g, node)
 # {'iri': 'https://example.com/customer_1/building_1#BUILDING', 'brick:TimeseriesUUID': 'UUID-1', '@label': 'bldg:BUILDING', '@id': 15}
 print(building_properties)
 
+
 edges_from_the_top = rdf2g.get_edges(g, building_properties.get('iri'), None)
+print(len(edges_from_the_top))
+
+rdf2g.get_node_properties(g, edges_from_the_top[-1].outV)
+
+for edge in edges_from_the_top:
+    pprint(edge)
 
 edge = edges_from_the_top[0]
 print(type(edge))
 #<class 'gremlin_python.structure.graph.Edge'>
 
+print(len(edges_from_the_top))
 print(edge.id)
 # 640
 print(edge.label)

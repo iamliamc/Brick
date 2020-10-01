@@ -1,5 +1,5 @@
-@prefix bldg: <https://example.com/customer_1/building_1#> .
-@prefix brick: <https://brickschema.org/schema/1.0.3/Brick#> .
+@prefix bldg: <customer_1/building_1#> .
+@prefix brick: <file://Users/liam/spectral_work_1/Brick/Brick.ttl> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
