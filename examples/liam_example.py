@@ -51,6 +51,7 @@ g.add((BLDG.AHU_A, BRICK.isFedBy, BLDG.PRIMARY_HOT_WATER))
 g.add((BLDG["AHU_A.FAN_COIL"], RDF.type, BRICK.Fan_Coil_Unit))
 
 g.add((BLDG["AHU_A.CALCULATED_SETPOINT"], RDF.type, BRICK.Air_Temperature_Setpoint))
+g.add((BLDG.AHU_A, BRICK.hasPoint, BLDG["AHU_A.CALCULATED_SETPOINT"]))
 g.add((BLDG["AHU_A.CALCULATED_SETPOINT"], BRICK.TimeseriesUUID, Literal("9437c8c2-57a2-4527-9c11-3c4af3fbc286")))
 g.add((BLDG["AHU_A.CALCULATED_SETPOINT.X1"], RDF.type, BRICK.Outside_Air_Temperature_Low_Reset_Setpoint))
 g.add((BLDG["AHU_A.CALCULATED_SETPOINT.X1"], BRICK.TimeseriesUUID, Literal("265a67ed-9d6f-42bf-881b-e29f30adc258")))
@@ -78,7 +79,8 @@ for floor in range(9):
     for sub_valve in range(3):
         vav_sub_valve = BLDG[f"VAV_A_{floor}_{sub_valve}"]
         g.add((BLDG[vav_sub_valve], RDF.type, BRICK.Variable_Air_Volume_Box))
-        g.add((BLDG.AHU_A, BRICK.feeds, vav_sub_valve))
+        g.add((BLDG["AHU_A.SUPPLY_TEMPERATURE"], BRICK.feeds, vav_sub_valve))
+        g.add((BLDG[vav_sub_valve], BRICK.isFedBy, BLDG["AHU_A.SUPPLY_TEMPERATURE"]))
         g.add((BLDG[f"HVAC_Zone_A_{floor}_{sub_valve}"], RDF.type, BRICK.HVAC_Zone))
         g.add((BLDG[vav_sub_valve], BRICK.feeds, BLDG[f"HVAC_Zone_A_{floor}_{sub_valve}"]))
         g.add((BLDG[f"VAV_A_{floor}_{sub_valve}.DPR"], RDF.type, BRICK.Damper))
