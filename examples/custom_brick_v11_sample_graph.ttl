@@ -222,8 +222,7 @@ brick:BuildingUUID rdfs:subClassOf brick:Tag .
 
 brick:CustomerUUID rdfs:subClassOf brick:Tag .
 
-brick:TimeseriesUUID a <http://www.w3.org/2002/07/owl#Class> ;
-    rdfs:subClassOf brick:Tag .
+brick:TimeseriesUUID rdfs:subClassOf brick:Tag .
 
 bldg:AHU_A.CALCULATED_SETPOINT a brick:Air_Temperature_Setpoint ;
     brick:TimeseriesUUID "9437c8c2-57a2-4527-9c11-3c4af3fbc286" ;

@@ -12,7 +12,7 @@ BRICK = Namespace("https://brickschema.org/schema/1.1/Brick#")
 g.bind("brick", BRICK)
 
 # # Should we use BRICK.Tag to get Spectral Timeseries Identifier in the system?
-g.add((BRICK.TimeseriesUUID, RDF.type, OWL.Class))
+# g.add((BRICK.TimeseriesUUID, RDF.type, OWL.Class))
 # # We can make TimeseriesUUID a subclass of the more generic "Tag" class.
 # # It is easy to change this later.
 g.add((BRICK.TimeseriesUUID, RDFS.subClassOf, BRICK.Tag))
@@ -126,6 +126,8 @@ for row in res:
 """
 We can "serialize" this model to a file if we want to load it into another program.
 """
+
+
 with open("custom_brick_v11_sample_graph.ttl", "wb") as f:
     # the Turtle format strikes a balance beteween being compact and easy to read
     f.write(g.serialize(format="ttl"))
